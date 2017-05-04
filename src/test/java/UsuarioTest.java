@@ -44,4 +44,8 @@ public class UsuarioTest {
 		Assert.assertEquals(0, RepositorioTransferencias.instance.pendientesAl(LocalDateTime.now()).size());
 	}
 	
+	@After
+	public void reset() {
+		RepositorioTransferencias.instance.reset();
+	}
 }
