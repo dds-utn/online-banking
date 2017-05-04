@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 
 public class Usuario {
 
@@ -18,6 +19,10 @@ public class Usuario {
 
 	private double retirar(int cantidadATransferir) {
 		return this.saldo -= cantidadATransferir;
+	}
+
+	public void programarTransferencia(int cantidad, Usuario destinatario, LocalDateTime localDateTime) {
+		RepositorioTransferencias.instance.agregar(new TransferenciaProgramada(this, localDateTime, cantidad, destinatario));
 	}
 
 }
