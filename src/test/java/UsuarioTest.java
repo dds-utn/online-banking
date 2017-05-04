@@ -1,6 +1,10 @@
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -27,6 +31,8 @@ public class UsuarioTest {
 
 	@Test
 	public void transferirAOtroUsuarioSeAcreditaCorrectamente() {
+		mockNowTo(LocalDateTime.of(LocalDate.now(), LocalTime.of(10, 0)));
+
 		this.usuario.transferir(4000, destinatario);
 		Assert.assertEquals(1000, this.usuario.saldo(), 0);
 		Assert.assertEquals(4000, this.destinatario.saldo(), 0);
@@ -34,6 +40,8 @@ public class UsuarioTest {
 	
 	@Test
 	public void transferirFueraDeHorarioGeneraUnaTransferenciaParaMañana() {
+		mockNowTo(LocalDateTime.of(LocalDate.now(), LocalTime.of(16, 0)));
+
 		this.usuario.transferir(4000, destinatario);
 		Assert.assertEquals(5000, usuario.saldo(), 0);
 		Assert.assertEquals(0, destinatario.saldo(), 0);
@@ -55,8 +63,14 @@ public class UsuarioTest {
 		Assert.assertEquals(0, RepositorioTransferencias.instance.pendientesAl(LocalDateTime.now()).size());
 	}
 	
+	private void mockNowTo(LocalDateTime mockNow) {
+		Instant instant = mockNow.toInstant(OffsetDateTime.now().getOffset());
+		GlobalClock.use(Clock.fixed(instant, ZoneId.systemDefault()));
+	}
+	
 	@After
 	public void reset() {
 		RepositorioTransferencias.instance.reset();
+		GlobalClock.reset();
 	}
 }
