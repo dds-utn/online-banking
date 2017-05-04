@@ -1,4 +1,6 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -28,6 +30,15 @@ public class UsuarioTest {
 		this.usuario.transferir(4000, destinatario);
 		Assert.assertEquals(1000, this.usuario.saldo(), 0);
 		Assert.assertEquals(4000, this.destinatario.saldo(), 0);
+	}
+	
+	@Test
+	public void transferirFueraDeHorarioGeneraUnaTransferenciaParaMañana() {
+		this.usuario.transferir(4000, destinatario);
+		Assert.assertEquals(5000, usuario.saldo(), 0);
+		Assert.assertEquals(0, destinatario.saldo(), 0);
+		LocalDateTime manianaPrimeraHora = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(9, 0));
+		Assert.assertEquals(1, RepositorioTransferencias.instance.pendientesAl(manianaPrimeraHora).size());
 	}
 	
 	@Test
