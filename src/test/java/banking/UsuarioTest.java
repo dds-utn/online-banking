@@ -14,17 +14,17 @@ import org.junit.Test;
 
 import banking.GlobalClock;
 import banking.RepositorioTransferencias;
-import banking.Usuario;
+import banking.CuentaBancaria;
 
 public class UsuarioTest {
 	
-	private Usuario destinatario;
-	private Usuario usuario;
+	private CuentaBancaria destinatario;
+	private CuentaBancaria usuario;
 
 	@Before
 	public void initContext() {
-		this.destinatario = new Usuario();
-		this.usuario = new Usuario();
+		this.destinatario = new CuentaBancaria();
+		this.usuario = new CuentaBancaria();
 		this.usuario.depositar(5000);
 	}
 	

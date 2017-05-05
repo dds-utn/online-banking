@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Usuario {
+public class CuentaBancaria {
 
 	private static final LocalTime ULTIMA_HORA_BANCARIA = LocalTime.of(14, 0);
 	private static final LocalTime PRIMERA_HORA_BANCARIA = LocalTime.of(9, 0);
@@ -17,7 +17,7 @@ public class Usuario {
 		return saldo;
 	}
 
-	public void transferir(int cantidadATransferir, Usuario destinatario) {
+	public void transferir(int cantidadATransferir, CuentaBancaria destinatario) {
 		if (this.esHorarioBancario()) {
 			retirar(cantidadATransferir);
 			destinatario.depositar(cantidadATransferir);
@@ -35,7 +35,7 @@ public class Usuario {
 		return this.saldo -= cantidadATransferir;
 	}
 
-	public void programarTransferencia(int cantidad, Usuario destinatario, LocalDateTime localDateTime) {
+	public void programarTransferencia(int cantidad, CuentaBancaria destinatario, LocalDateTime localDateTime) {
 		RepositorioTransferencias.instance.agregar(new TransferenciaProgramada(this, localDateTime, cantidad, destinatario));
 	}
 

@@ -3,12 +3,12 @@ import java.time.LocalDateTime;
 
 public class TransferenciaProgramada {
 
-	private Usuario usuario;
+	private CuentaBancaria usuario;
 	private int cantidad;
-	private Usuario destinatario;
+	private CuentaBancaria destinatario;
 	private LocalDateTime fechaAEjecutar;
 
-	public TransferenciaProgramada(Usuario usuario, LocalDateTime localDateTime, int cantidad, Usuario destinatario) {
+	public TransferenciaProgramada(CuentaBancaria usuario, LocalDateTime localDateTime, int cantidad, CuentaBancaria destinatario) {
 		this.usuario = usuario;
 		this.fechaAEjecutar = localDateTime;
 		this.cantidad = cantidad;
@@ -27,11 +27,11 @@ public class TransferenciaProgramada {
     return cantidad;
   }
 	
-	public Usuario getUsuario() {
+	public CuentaBancaria getUsuario() {
     return usuario;
   }
 	
-	public Usuario getDestinatario() {
+	public CuentaBancaria getDestinatario() {
     return destinatario;
   }
 
