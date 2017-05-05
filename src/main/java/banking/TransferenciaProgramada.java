@@ -1,3 +1,4 @@
+package banking;
 import java.time.LocalDateTime;
 
 public class TransferenciaProgramada {
@@ -21,5 +22,17 @@ public class TransferenciaProgramada {
 	public void ejecutar() {
 		usuario.transferir(cantidad, destinatario);
 	}
+	
+	public int getCantidad() {
+    return cantidad;
+  }
+	
+	public Usuario getUsuario() {
+    return usuario;
+  }
+	
+	public Usuario getDestinatario() {
+    return destinatario;
+  }
 
 }

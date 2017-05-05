@@ -1,3 +1,4 @@
+package banking;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -10,6 +11,10 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import banking.GlobalClock;
+import banking.RepositorioTransferencias;
+import banking.Usuario;
 
 public class UsuarioTest {
 	
