@@ -12,7 +12,7 @@ public class RepositorioTransferencias {
 		this.transferencias.add(transferenciaProgramada);
 	}
 
-	public List<TransferenciaProgramada> transferenciasPendientes() {
+	public List<TransferenciaProgramada> pendientes() {
 		return transferencias;
 	}
 
